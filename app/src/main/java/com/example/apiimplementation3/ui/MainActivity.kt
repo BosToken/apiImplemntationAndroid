@@ -49,9 +49,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showList(){
-        val layoutManager = LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(binding.rvReview.context)
         binding.rvReview.layoutManager = layoutManager
-        val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
+        val itemDecoration = DividerItemDecoration(binding.rvReview.context, layoutManager.orientation)
         binding.rvReview.addItemDecoration(itemDecoration)
     }
 

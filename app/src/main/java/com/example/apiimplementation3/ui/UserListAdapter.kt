@@ -1,6 +1,7 @@
 package com.example.apiimplementation3.ui
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -9,6 +10,7 @@ import com.example.apiimplementation3.data.response.ItemsItem
 import com.example.apiimplementation3.databinding.ItemUserBinding
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
+import kotlin.math.log
 
 class UserListAdapter : ListAdapter<ItemsItem, UserListAdapter.MyViewHolder>(DIFF_CALLBACK){
     private lateinit var onItemClickCallback: OnItemClickCallback
@@ -23,19 +25,19 @@ class UserListAdapter : ListAdapter<ItemsItem, UserListAdapter.MyViewHolder>(DIF
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val review = getItem(position)
-        holder.bind(review)
+        val user = getItem(position)
+        holder.bind(user)
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, DetailActivity::class.java)
-            intent.putExtra("login", review.login.toString())
+            intent.putExtra("login", user.login.toString())
             holder.itemView.context.startActivity(intent)
         }
     }
 
     class MyViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(review: ItemsItem){
-            binding.tvText.text = "${review.login}"
-            Glide.with(binding.root).load(review.avatarUrl).into(binding.tvImageProfile)
+        fun bind(user: ItemsItem){
+            binding.tvText.text = "${user.login}"
+            Glide.with(binding.root).load(user.avatarUrl).into(binding.tvImageProfile)
         }
     }
 

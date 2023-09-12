@@ -1,11 +1,20 @@
 package com.example.apiimplementation3.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.apiimplementation3.R
+import com.example.apiimplementation3.data.response.UserFollowItem
+import com.example.apiimplementation3.data.retrofit.ApiConfig
+import com.example.apiimplementation3.databinding.FragmentFollowingBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +30,8 @@ class FollowingFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var binding: FragmentFollowingBinding
+    private lateinit var rvFolllowing: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +45,54 @@ class FollowingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_following, container, false)
+        binding = FragmentFollowingBinding.inflate(layoutInflater)
+        val rootView = inflater.inflate(R.layout.fragment_following, container, false)
+        val arg = arguments?.getString("user")
+
+        rvFolllowing = rootView.findViewById(R.id.rvFolllowing)
+        rvFolllowing.setHasFixedSize(true)
+
+        findFollowing(arg.toString())
+        return rootView
+    }
+
+    private fun findFollowing(user : String) {
+        showLoading(true)
+        val client = ApiConfig.getApiService().getFollowing(user)
+        client.enqueue(object : Callback<List<UserFollowItem>> {
+            override fun onResponse(
+                call: Call<List<UserFollowItem>>,
+                response: Response<List<UserFollowItem>>
+            ) {
+                showLoading(false)
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        showList(responseBody)
+                    }
+                } else {
+                }
+            }
+            override fun onFailure(call: Call<List<UserFollowItem>>, t: Throwable) {
+                showLoading(false)
+                Log.d("Error", "onFailure: ${t.message}")
+            }
+
+        })
+    }
+
+    fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun showList(userFollow: List<UserFollowItem>) {
+        rvFolllowing.layoutManager = LinearLayoutManager(binding.rvFolllowing.context)
+        val listuserAdapter = FollowListAdapter(userFollow)
+        rvFolllowing.adapter = listuserAdapter
     }
 
     companion object {

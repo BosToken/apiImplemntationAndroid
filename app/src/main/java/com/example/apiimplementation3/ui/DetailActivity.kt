@@ -1,5 +1,6 @@
 package com.example.apiimplementation3.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,6 +23,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class DetailActivity : AppCompatActivity() {
 
     private var user : String? = null
+    private val sectionsPagerAdapter = SectionsPagerAdapter(this)
 
     companion object {
         @StringRes
@@ -36,7 +38,6 @@ class DetailActivity : AppCompatActivity() {
         user = intent.getStringExtra("login")
         setContentView(R.layout.activity_detail)
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this)
         val viewPager: ViewPager2 = findViewById(R.id.view_pager)
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabLayout)
@@ -45,7 +46,10 @@ class DetailActivity : AppCompatActivity() {
         }.attach()
         supportActionBar?.elevation = 0f
 
+        sectionsPagerAdapter.getUser(user.toString())
         detailUser(user.toString())
+//        test()
+
     }
 
     private fun detailUser(User : String){
@@ -69,6 +73,7 @@ class DetailActivity : AppCompatActivity() {
                         Glide.with(this@DetailActivity).load(responseBody.avatarUrl).into(photoProfile)
                         follower.text = "${responseBody.followers.toString()} Followers"
                         following.text = "${responseBody.following.toString()} Following"
+
                     }
                 } else {
                     Log.e(this.toString(), "onFailure: ${response.message()}")
