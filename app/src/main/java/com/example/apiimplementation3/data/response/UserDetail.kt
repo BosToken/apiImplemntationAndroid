@@ -22,6 +22,6 @@ import com.google.gson.annotations.SerializedName
 	@field:SerializedName("followers_url")
 	val followersUrl: String,
 
-	@field:SerializedName("url")
-	val url: String
+	@field:SerializedName("name")
+	val name: String
 )

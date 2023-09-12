@@ -48,14 +48,13 @@ class FollowerFragment : Fragment() {
     ): View? {
 
         binding = FragmentFollowerBinding.inflate(layoutInflater)
-        val rootView = inflater.inflate(R.layout.fragment_follower, container, false)
         val arg = arguments?.getString("user")
 
-        rvFollower = rootView.findViewById(R.id.rvFollower)
+        rvFollower = binding.root.findViewById(R.id.rvFollower)
         rvFollower.setHasFixedSize(true)
 
         findFollower(arg.toString())
-        return rootView
+        return binding.root
     }
 
     private fun findFollower(user : String) {

@@ -64,12 +64,14 @@ class DetailActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-                        val username : TextView = findViewById(R.id.tvName)
+                        val username : TextView = findViewById(R.id.tvUsername)
+                        val name : TextView = findViewById(R.id.tvName)
                         val photoProfile : ImageView = findViewById(R.id.tvImageProfile)
                         val follower : TextView = findViewById(R.id.tvFollower)
                         val following : TextView = findViewById(R.id.tvFollowing)
 
                         username.text = responseBody.login
+                        name.text = responseBody.name
                         Glide.with(this@DetailActivity).load(responseBody.avatarUrl).into(photoProfile)
                         follower.text = "${responseBody.followers.toString()} Followers"
                         following.text = "${responseBody.following.toString()} Following"

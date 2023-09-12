@@ -45,15 +45,14 @@ class FollowingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentFollowingBinding.inflate(layoutInflater)
-        val rootView = inflater.inflate(R.layout.fragment_following, container, false)
+        binding = FragmentFollowingBinding.inflate(inflater, container, false)
         val arg = arguments?.getString("user")
 
-        rvFolllowing = rootView.findViewById(R.id.rvFolllowing)
+        rvFolllowing = binding.root.findViewById(R.id.rvFolllowing)
         rvFolllowing.setHasFixedSize(true)
 
         findFollowing(arg.toString())
-        return rootView
+        return binding.root
     }
 
     private fun findFollowing(user : String) {
