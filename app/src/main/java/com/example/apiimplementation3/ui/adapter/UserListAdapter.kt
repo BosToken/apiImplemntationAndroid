@@ -1,6 +1,7 @@
 package com.example.apiimplementation3.ui.adapter
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -24,6 +25,7 @@ class UserListAdapter : ListAdapter<ItemsItem, UserListAdapter.MyViewHolder>(DIF
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        Log.d("test123", "${getItem(29).login}")
         val user = getItem(position)
         holder.bind(user)
         holder.itemView.setOnClickListener {
