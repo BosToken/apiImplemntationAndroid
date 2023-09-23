@@ -1,4 +1,4 @@
-package com.example.apiimplementation3.ui
+package com.example.apiimplementation3.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View

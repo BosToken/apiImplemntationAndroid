@@ -1,9 +1,11 @@
-package com.example.apiimplementation3.ui
+package com.example.apiimplementation3.ui.adapter
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.apiimplementation3.ui.fragment.FollowerFragment
+import com.example.apiimplementation3.ui.fragment.FollowingFragment
 
 class SectionsPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
 

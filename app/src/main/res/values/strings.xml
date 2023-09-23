@@ -9,4 +9,7 @@
     <string name="content_tab_profile">Change your Profile here</string>
     <string name="content_tab_text">This is Tab %1$d</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_favorite">Favorite</string>
+    <string name="theme_option">Dark Mode</string>
+    <string name="menu_theme">Theme</string>
 </resources>

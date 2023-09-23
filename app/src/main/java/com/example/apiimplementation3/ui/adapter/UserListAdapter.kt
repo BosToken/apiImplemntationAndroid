@@ -1,7 +1,6 @@
-package com.example.apiimplementation3.ui
+package com.example.apiimplementation3.ui.adapter
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -10,7 +9,7 @@ import com.example.apiimplementation3.data.response.ItemsItem
 import com.example.apiimplementation3.databinding.ItemUserBinding
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
-import kotlin.math.log
+import com.example.apiimplementation3.ui.main.DetailActivity
 
 class UserListAdapter : ListAdapter<ItemsItem, UserListAdapter.MyViewHolder>(DIFF_CALLBACK){
     private lateinit var onItemClickCallback: OnItemClickCallback
@@ -29,7 +28,7 @@ class UserListAdapter : ListAdapter<ItemsItem, UserListAdapter.MyViewHolder>(DIF
         holder.bind(user)
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, DetailActivity::class.java)
-            intent.putExtra("login", user.login.toString())
+            intent.putExtra("login", user.login)
             holder.itemView.context.startActivity(intent)
         }
     }

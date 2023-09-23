@@ -7,6 +7,8 @@ import com.example.apiimplementation3.data.response.UserResponse
 import retrofit2.http.*
 import retrofit2.Call
 
+private val token: String = "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"
+
 interface ApiService {
     @GET("search/users")
     fun getUser(
