@@ -25,7 +25,6 @@ class UserListAdapter : ListAdapter<ItemsItem, UserListAdapter.MyViewHolder>(DIF
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        Log.d("test123", "${getItem(29).login}")
         val user = getItem(position)
         holder.bind(user)
         holder.itemView.setOnClickListener {

@@ -6,7 +6,8 @@
         android:icon="@drawable/baseline_favorite_border_24"
         android:orderInCategory="100"
         android:title="@string/menu_favorite"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom"
+        />
     <item
         android:id="@+id/menuTheme"
         android:title="@string/menu_theme"
